@@ -111,3 +111,6 @@ flask_session/
 
 # set environment variables
 env.sh
+
+# private key 
+private.key

@@ -77,7 +77,11 @@ def _save_cache(cache):
 def _build_msal_app(cache=None, authority=None):
     return msal.ConfidentialClientApplication(
         app_config.CLIENT_ID, authority=authority or app_config.AUTHORITY,
-        client_credential=app_config.CLIENT_SECRET, token_cache=cache)
+        client_credential={ 
+                "thumbprint" : app_config.THUMBPRINT, 
+                "private_key": open("private.key", "r").read()
+            }, 
+            token_cache=cache)
 
 def _build_auth_code_flow(authority=None, scopes=None):
     print(url_for("authorized", _external=True))
